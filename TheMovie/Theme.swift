@@ -19,22 +19,53 @@ struct Theme{
     
     private static func defaultNavBarThemes(){
         
+        let navTextTitleColor = UIColor.whiteColor()
+        let navBarColor = UIColor(white: 0, alpha: 0.4)
+        
+        
         //It affects the title text color
         UINavigationBar.appearance().titleTextAttributes =
-            [NSForegroundColorAttributeName:UIColor.whiteColor()]
+            [NSForegroundColorAttributeName:navTextTitleColor]
         
         //It affects the bar button,back button color
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = navTextTitleColor
         
         //It affects the nav bar background color
-        UINavigationBar.appearance().barTintColor = UIColor(white: 0.4, alpha: 1.0)
-//        UINavigationBar.appearance().opaque = true
-//        UINavigationBar.appearance().translucent = false
-        
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        UINavigationBar.appearance().barTintColor = navBarColor
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(),forBarMetrics: .Default)
 //        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().translucent = true
     }
+    
+    
+    //MARK :- It can be used in navBarGlassEffect view
+    static func addBlurEffect(toView view:UIView?) {
+        // Add blur view
+        guard let view = view else { return }
+        
+        
+        //This will let visualEffectView to work perfectly
+        if let navBar = view as? UINavigationBar{
+            navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            navBar.shadowImage = UIImage()
+        }
+        
+        
+        var bounds = view.bounds
+        bounds.offsetInPlace(dx: 0.0, dy: -20.0)
+        bounds.size.height = bounds.height + 20.0
+        
+        
+        let blurEffect = UIBlurEffect(style: .Light)
+//        let vibrancyEffect = UIVibrancyEffect(forBlurEffect: blurEffect)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        visualEffectView.userInteractionEnabled = false
+        visualEffectView.frame = bounds
+        visualEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.insertSubview(visualEffectView, atIndex: 0)
+        
+    }
+
     
     private static func defaultTableViewThemes(){
         

@@ -31,7 +31,6 @@ class MovieCollectionViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        
         fetchResultInBackground()
         
     }
@@ -125,6 +124,7 @@ extension MovieCollectionViewController:UICollectionViewDataSource,UICollectionV
             let photoURL = Urls.URL_IMAGE_BASE + photoPath
             
             cell.imageViewMovie.kf_showIndicatorWhenLoading = true
+            cell.imageViewMovie.kf_indicator?.activityIndicatorViewStyle = .White
             cell.imageViewMovie.kf_setImageWithURL(NSURL(string: photoURL)!,
                                                          placeholderImage: nil,
                                                          optionsInfo: [.Transition(ImageTransition.Fade(1))])

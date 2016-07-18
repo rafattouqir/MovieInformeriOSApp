@@ -59,9 +59,6 @@ class DetailViewController: UIViewController {
         collectionViewSimilarMovie.delegate = self
         
         
-//        self.navBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//        self.navBar?.shadowImage = UIImage()
-        
         fetchResultInBackground()
         
         
@@ -78,6 +75,7 @@ class DetailViewController: UIViewController {
             let photoURL = Urls.URL_IMAGE_BASE + photoPath
             
             imageViewTopBanner.kf_showIndicatorWhenLoading = true
+            imageViewTopBanner.kf_indicator?.activityIndicatorViewStyle = .White
             imageViewTopBanner.kf_setImageWithURL(NSURL(string: photoURL)!,
                                                           placeholderImage: nil,
                                                           optionsInfo: [.Transition(ImageTransition.Fade(1))])
@@ -213,6 +211,8 @@ extension DetailViewController:UICollectionViewDataSource,UICollectionViewDelega
             let photoURL = Urls.URL_IMAGE_BASE + photoPath
             
             cell.imageViewSimilarMovie.kf_showIndicatorWhenLoading = true
+            
+            cell.imageViewSimilarMovie.kf_indicator?.activityIndicatorViewStyle = .White
             cell.imageViewSimilarMovie.kf_setImageWithURL(NSURL(string: photoURL)!,
                                                    placeholderImage: nil,
                                                    optionsInfo: [.Transition(ImageTransition.Fade(1))])

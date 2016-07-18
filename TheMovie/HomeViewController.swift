@@ -27,14 +27,7 @@ class HomeViewController: ButtonBarPagerTabStripViewController {
         tabStripConfig()
         
         super.viewDidLoad()
-        
-        
-        // TODO :- This was translucent but,after navigation to next controller it caused issues
-//        self.navBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//        self.navBar?.shadowImage = UIImage()
-        
-        
-        
+        Theme.addBlurEffect(toView: self.navigationController?.navigationBar)
         
         
         
